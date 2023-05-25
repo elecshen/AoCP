@@ -6,4 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\static\img\logo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\fonts\" />
+    <Folder Include="wwwroot\static\svg\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\static\img\logo.svg" />
+  </ItemGroup>
+
 </Project>

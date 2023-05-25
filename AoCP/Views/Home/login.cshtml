@@ -1,0 +1,130 @@
+﻿<style>
+    .auth-container {
+        position: relative;
+        width: 400px;
+        height: 500px;
+        background: #17283F;
+        border-radius: 20px;
+        padding: 50px;
+        z-index: 10;
+    }
+
+    .auth-title-text {
+        position: relative;
+        font-size: 40px;
+        font-weight: 700;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+    }
+
+    .auth-input-container {
+        position: relative;
+        display: flex;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .input {
+        position: relative;
+        padding: 16px 8px;
+        font-size: 24px;
+        background: #E743623F;
+        border: #E74362 solid 4px;
+        border-radius: 10px;
+        color: white;
+    }
+
+        .input:focus {
+            outline: #f5627d solid 2px;
+        }
+
+    .input-icon-offset {
+        padding-right: 44px;
+    }
+
+    .child-fill {
+        flex-grow: 1;
+    }
+
+    .showpw {
+        position: absolute;
+        right: 12px;
+        top: 0;
+        height: 100%;
+        width: 32px;
+    }
+
+    .auth-log-button-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-top: 150px;
+    }
+
+    .button {
+        height: 70px;
+        background: #E74362;
+        font-size: 32px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        border: 0;
+        border-radius: 10px;
+        padding: 20px 30px;
+    }
+
+        .button:hover {
+            background-color: #f5627d;
+        }
+
+    .auth-reg-button-conteiner {
+        position: absolute;
+        height: 60px;
+        left: 100%;
+        top: -30px;
+        transform-origin: 0 100% 0;
+        transform: rotate(90deg);
+        overflow: hidden;
+        text-decoration: none;
+    }
+</style>
+
+<form class="auth-container">
+    <div class="auth-title-text">ВХОД</div>
+    <div class="auth-input-container">
+        <input type="text" name="email" placeholder="Почта" class="input child-fill"/>
+    </div>
+    <div class="auth-input-container">
+        <input type="password" name="password" placeholder="Пароль" class="input child-fill input-icon-offset"/>
+        <img src="static/svg/eye.svg" class="showpw">
+    </div>
+
+
+    <div class="auth-log-button-container">
+        <input type="submit" class="button" value="Войти">
+    </div>
+
+
+    <a href="/" class="auth-reg-button-conteiner">
+        <div class="button">Зарегистрироваться</div>
+    </a>
+</form>
+
+<script>
+    function changeInputType() {
+        var eye = document.getElementsByClassName("showpw")[0];
+        var ipw = document.getElementsByName("password")[0];
+        if (eye.classList.contains("showpassword-state")) {
+            eye.src = "static/svg/eye.svg";
+            ipw.type = "password";
+        } else {
+            eye.src = "static/svg/closedeye.svg";
+            ipw.type = "text";
+        }
+        eye.classList.toggle("showpassword-state");
+    }
+
+    var el = document.getElementsByClassName("showpw")[0];
+    el.addEventListener("click", changeInputType);
+</script>

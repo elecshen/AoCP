@@ -97,7 +97,7 @@
     </div>
     <div class="auth-input-container">
         <input type="password" name="password" placeholder="Пароль" class="input child-fill input-icon-offset"/>
-        <img src="static/svg/eye.svg" class="showpw">
+        <img src="static/svg/eyeopened.svg" class="showpw">
     </div>
 
 
@@ -116,10 +116,10 @@
         var eye = document.getElementsByClassName("showpw")[0];
         var ipw = document.getElementsByName("password")[0];
         if (eye.classList.contains("showpassword-state")) {
-            eye.src = "static/svg/eye.svg";
+            eye.src = "static/svg/eyeopened.svg";
             ipw.type = "password";
         } else {
-            eye.src = "static/svg/closedeye.svg";
+            eye.src = "static/svg/eyeclosed.svg";
             ipw.type = "text";
         }
         eye.classList.toggle("showpassword-state");

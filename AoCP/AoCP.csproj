@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="devWeb\**" />
+    <Content Remove="devWeb\**" />
+    <EmbeddedResource Remove="devWeb\**" />
+    <None Remove="devWeb\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\static\img\logo.svg" />
   </ItemGroup>
 

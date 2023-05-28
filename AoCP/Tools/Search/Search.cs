@@ -1,13 +1,13 @@
-﻿namespace AoCP.Models.Search
+﻿namespace AoCP.Tools.Search
 {
     public class Search
     {
-    /// <summary>
-    /// Растояние Левенштейна - алгоритм, который показывает на сколько слова похожи друг на друга
-    /// </summary>
-    /// <param name="firstWord"></param>
-    /// <param name="secondWord"></param>
-    /// <returns></returns>
+        /// <summary>
+        /// Растояние Левенштейна - алгоритм, который показывает на сколько слова похожи друг на друга
+        /// </summary>
+        /// <param name="firstWord"></param>
+        /// <param name="secondWord"></param>
+        /// <returns></returns>
         public static int LevenshteinDistance(string firstWord, string secondWord)
         {
             var n = firstWord.Length + 1;

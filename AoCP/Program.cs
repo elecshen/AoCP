@@ -1,5 +1,5 @@
 using AoCP.Models.DataBaseModel;
-using AoCP.Models.Search;
+using AoCP.Tools.Search;
 using Microsoft.EntityFrameworkCore;
 
 namespace AoCP
@@ -12,15 +12,16 @@ namespace AoCP
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
             using (ApplicationContext db = new ApplicationContext())
             {
-                var Objects = db.Object.ToList();
-                Console.WriteLine("Список объектов:");
-                foreach (Models.DataBaseModel.Object u in Objects)
+                foreach (User user in db.Users.Include(u => u.Landlord).ToList())
                 {
-                    Console.WriteLine(Search.LevenshteinDistance("tect Asdwdad asdawdasd", u.Name));
+                    Console.WriteLine($"Name: {user.Landlord?.FirstName} PhoneNumber: {user.Landlord?.PhoneNumber}");
+                    Console.WriteLine($"Login: {user.Mail}  Password: {user.Password} \n");
                 }
             }
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

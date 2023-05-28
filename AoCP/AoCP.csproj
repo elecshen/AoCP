@@ -18,4 +18,13 @@
     <Folder Include="wwwroot\static\svg\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\static\img\logo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+  </ItemGroup>
+
 </Project>

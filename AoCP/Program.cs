@@ -1,3 +1,7 @@
+using AoCP.Models.DataBaseModel;
+using AoCP.Models.Search;
+using Microsoft.EntityFrameworkCore;
+
 namespace AoCP
 {
     public class Program
@@ -8,7 +12,15 @@ namespace AoCP
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var Objects = db.Object.ToList();
+                Console.WriteLine("Список объектов:");
+                foreach (Models.DataBaseModel.Object u in Objects)
+                {
+                    Console.WriteLine(Search.LevenshteinDistance("tect Asdwdad asdawdasd", u.Name));
+                }
+            }
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -25,6 +37,7 @@ namespace AoCP
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.MapControllerRoute(
                 name: "default",

@@ -15,7 +15,8 @@ namespace AoCP.Controllers
 
         public IActionResult Index()
         {
-            return View("login");
+            ViewData["HeaderType"] = "lk";
+            return View();
         }
 
         public IActionResult Privacy()

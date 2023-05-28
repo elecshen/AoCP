@@ -1,0 +1,120 @@
+﻿@{
+	string svgPath = "static/svg/";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - AoCP</title>
+	<link rel="stylesheet" href="~/css/sharedStyle.css" asp-append-version="true" />
+	@if (ViewData["HeaderType"] != null &&  ViewData["HeaderType"].ToString() == "search")
+	{
+		<script>
+			window.addEventListener("DOMContentLoaded", function () {
+				var clickHandler = "click";
+				if ('ontouchstart' in document.documentElement) {
+					clickHandler = "touchstart";
+				}
+				//когда страница загрузилась
+				var profile = document.querySelector(".profile-container"),  //находим нужный блок
+					button = profile.querySelector(".icon-button"),  //находим кнопку в этом блоке
+					droplist = profile.querySelector(".droplist");//находим блок которым управлет кнопка
+				button.addEventListener(clickHandler, function (event) { //на кнопку ставим обработчик клика
+					droplist.classList.toggle("droplist-show");  //меняем или ставим класс
+					button.classList.toggle("hovered");
+					droplist.classList.contains("droplist-show") ? window.addEventListener(clickHandler, hide) : window.removeEventListener(clickHandler, hide)
+					// если класс "show" поставлен  ставим обработчик на весь документ иначе убираем (управлемый блок уже закрыт, повторно закрывать его не надо)
+				});
+				profile.addEventListener(clickHandler, function (event) {
+					event.stopPropagation() //отменяем всплытие клика иначе выбор любого чекбокса или клик по кнопке закроет управлемый блок, т.к. при открытии мы навесили обработчик закрытия
+				});
+				/* функция отмены класса с самоудалением */
+				function hide() {
+					droplist.classList.remove("droplist-show"); //удалем класс
+					button.classList.remove("hovered");
+					window.removeEventListener(clickHandler, hide) //удалем обработчик с документа
+				}
+
+			});
+		</script>
+	}
+</head>
+<body>
+	@switch (ViewData["HeaderType"])
+	{
+		case "search":
+			{
+				<header>
+					<img src="@(svgPath)logo.svg" class="logo">
+					<div class="search">
+						<input class="search-bar" placeholder="Найти лучшее">
+						<button class="search-button button">Найти</button>
+					</div>
+					<div class="profile-container">
+						<div class="icon-button">
+							<div class="icon-container"><img class="icon" src="@(svgPath)profile_icon_red.svg"></div>
+							<div class="icon-container"><img class="icon" src="@(svgPath)triangle_red.svg"></div>
+						</div>
+						<div class="droplist">
+							<a class="droplist-element">
+								<img class="icon" src="@(svgPath)profile_red.svg">
+								<p>Мой профиль</p>
+							</a>
+							<div class="droplist-element">
+								<img class="icon" src="@(svgPath)dogovor_red.svg">
+								<p>Мои договора</p>
+							</div>
+							<div class="droplist-element">
+								<img class="icon" src="@(svgPath)logout_list_red.svg">
+								<p>Выйти</p>
+							</div>
+						</div>
+					</div>
+				</header>
+				break;
+			}
+		case "lk":
+			{
+				<header>
+					<img src="@(svgPath)logo.svg" class="logo">
+					<div class="tablist">
+						<div class="tab-container">
+							<div class="tab">Мой профиль</div>
+						</div>
+						<div class="tab-container tab-selected">
+							<div class="tab">Мои договора</div>
+						</div>
+					</div>
+					<div class="profile-container">
+						<div class="icon-button">
+							<div class="icon-container"><img class="icon" src="@(svgPath)profile_icon_red.svg"></div>
+						</div>
+						<div class="icon-button">
+							<div class="icon-container"><img class="icon" src="@(svgPath)logout_red.svg"></div>
+						</div>
+					</div>
+				</header>
+				break;
+			}
+		default:
+			{
+				<header>
+					<img src="@(svgPath)logo.svg" class="logo">
+					<div class="search">
+						<input class="search-bar" placeholder="Найти лучшее">
+						<button class="search-button  button">Найти</button>
+					</div>
+					<button class="login-button  button">Войти</button>
+				</header>
+				break;
+			}
+	}
+	@RenderBody()
+	<footer>
+		<img src="@(svgPath)logo.svg" class="logo">
+		<div class="copyrights">©2023</div>
+	</footer>
+</body>
+</html>
